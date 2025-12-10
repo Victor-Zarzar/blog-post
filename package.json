@@ -10,9 +10,20 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "@vercel/analytics": "^1.6.1",
+    "@vercel/postgres": "^0.10.0",
+    "better-auth": "^1.4.6",
+    "drizzle-kit": "^0.31.8",
+    "drizzle-orm": "^0.45.1",
+    "motion": "^12.23.26",
     "next": "16.0.8",
+    "next-intl": "^4.5.8",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "server-only": "^0.0.1",
+    "swr": "^2.3.7",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
