@@ -1,10 +1,10 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import env from "@/env.mjs";
 import { routing } from "@/i18n/routing";
-import type { Metadata } from "next";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { notFound } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,9 +43,7 @@ export default async function LocaleLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider>
-        {children}
-      </NextIntlClientProvider>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );
