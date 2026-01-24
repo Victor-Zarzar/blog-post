@@ -1,0 +1,11 @@
+{
+  "Navbar": {
+    "titlenavbar": "Blog Post"
+  },
+  "GlobalError": {
+    "title": "Error en la aplicación",
+    "description": "Se ha producido un error crítico. Nuestro equipo ha sido notificado.",
+    "errorId": "ID del error: {id}",
+    "tryAgain": "Intentar de nuevo"
+  }
+}

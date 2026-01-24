@@ -7,6 +7,7 @@ const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
 
+    DATABASE_URL: z.string().url(),
     SENTRY_AUTH_TOKEN: z.string().optional(),
     SENTRY_RELEASE: z.string().optional(),
     SENTRY_ORG: z.string().optional(),
@@ -38,6 +39,7 @@ const env = createEnv({
 
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    DATABASE_URL: process.env.DATABASE_URL,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     SENTRY_RELEASE: process.env.SENTRY_RELEASE,
     SENTRY_ORG: process.env.SENTRY_ORG,
