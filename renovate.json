@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "packageRules": [
+    {
+      "packageNames": ["prisma", "@prisma/client"],
+      "enabled": true,
+      "updateTypes": ["major", "minor", "patch"],
+      "groupName": "prisma dependencies"
+    }
+  ]
+}

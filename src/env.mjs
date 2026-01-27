@@ -7,7 +7,11 @@ const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
 
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
+    NEXTAUTH_URL: z.url(),
+    NEXTAUTH_SECRET: z.string().min(32),
+    GITHUB_CLIENT_ID: z.string().min(1),
+    GITHUB_CLIENT_SECRET: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string().optional(),
     SENTRY_RELEASE: z.string().optional(),
     SENTRY_ORG: z.string().optional(),
@@ -40,6 +44,10 @@ const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env.DATABASE_URL,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     SENTRY_RELEASE: process.env.SENTRY_RELEASE,
     SENTRY_ORG: process.env.SENTRY_ORG,

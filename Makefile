@@ -1,8 +1,12 @@
 # Makefile - Blog Post
 DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
+COMPOSE = docker compose
 PORT = 3000
 DOCKER_TAG = 1.0.0
+
+gen-secret:
+	openssl rand -base64 64
 
 install:
 	bun install
@@ -21,7 +25,9 @@ run: build
 		--name $(DOCKER_CONTAINER_NAME) \
 		-p $(PORT):3000 \
 		-v $(PWD):/app \
+		-v $(PWD)/prisma:/app/prisma \
 		-v /app/node_modules \
+		-v /app/.next \
 		$(DOCKER_IMAGE_NAME):$(DOCKER_TAG)
 
 stop:
@@ -49,6 +55,7 @@ help:
 	@echo "Local Commands:"
 	@echo "  make install          Install dependencies using bun"
 	@echo "  make dev              Run the app locally in development mode"
+	@echo "  make gen-secret       Generate a secret key for NextAuth"
 	@echo ""
 	@echo "Production Commands:"
 	@echo "  bun run build        Run the app in production mode"
