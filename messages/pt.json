@@ -7,5 +7,83 @@
     "description": "Ocorreu um erro crítico. Nossa equipe já foi notificada.",
     "errorId": "ID do erro: {id}",
     "tryAgain": "Tentar novamente"
-  }
+  },
+  "Login": {
+     "title": "Entrar na sua conta",
+     "subtitle": "Informe seu e-mail abaixo para entrar na sua conta",
+     "emailLabel": "E-mail",
+     "emailPlaceholder": "m@exemplo.com",
+     "passwordLabel": "Senha",
+     "forgotPassword": "Esqueceu sua senha?",
+     "submit": "Entrar",
+     "orContinueWith": "Ou continue com",
+     "github": "Entrar com GitHub",
+     "noAccount": "Não tem uma conta?",
+     "signup": "Criar conta",
+     "invalidemail": "E-mail inválido",
+     "passwordrequired": "A senha é obrigatória",
+     "passwordmin": "A senha deve ter pelo menos 6 caracteres",
+     "passwordmax": "A senha deve ter no máximo 100 caracteres",
+     "backToHome": "Voltar para o início"
+   },
+   "Signup": {
+    "title": "Crie sua conta",
+    "subtitle": "Preencha o formulário abaixo para criar sua conta",
+    "nameLabel": "Nome completo",
+    "namePlaceholder": "João da Silva",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "m@exemplo.com",
+    "emailHelp": "Vamos usar isso para entrar em contato com você. Não compartilharemos seu e-mail com terceiros.",
+    "passwordLabel": "Senha",
+    "passwordHelp": "Deve ter pelo menos 8 caracteres.",
+    "confirmPasswordLabel": "Confirmar senha",
+    "confirmPasswordHelp": "Confirme sua senha.",
+    "submit": "Criar conta",
+    "orContinueWith": "Ou continue com",
+    "github": "Cadastrar com GitHub",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "signin": "Entrar",
+    "namerequired": "O nome é obrigatório",
+    "namemin": "O nome deve ter pelo menos 2 caracteres",
+    "namemax": "O nome deve ter no máximo 100 caracteres",
+    "invalidemail": "E-mail inválido",
+    "passwordrequired": "A senha é obrigatória",
+    "passwordmin": "A senha deve ter pelo menos 8 caracteres",
+    "passwordmax": "A senha deve ter no máximo 100 caracteres",
+    "confirmrequired": "A confirmação de senha é obrigatória",
+    "passwordsmustmatch": "As senhas não coincidem"
+  },
+  "PagesLayout": {
+    "brand": "TEN",
+    "searchPlaceholder": "Digite para pesquisar...",
+    "signIn": "Entrar",
+    "createAccount": "Criar conta",
+      "nav": {
+        "home": "Início",
+        "readingList": "Lista de leitura",
+        "tags": "Tags",
+        "about": "Sobre",
+        "contact": "Contato"
+      },
+      "communityCard": {
+        "title": "TEN Community",
+        "subtitle": "Um espaço pra devs compartilharem e evoluírem.",
+        "ctaPrimary": "Criar conta",
+        "ctaSecondary": "Entrar"
+      },
+      "aboutCard": {
+        "title": "Sobre",
+        "text": "Feito com Next.js, TypeScript, Postgres, Prisma e Docker."
+      },
+      "command": {
+        "navigate": "Navegar",
+        "account": "Conta",
+        "empty": "Nenhum resultado."
+      },
+      "footer": {
+        "forYou": "Para você",
+        "latest": "Mais recentes",
+        "trending": "Mais populares"
+      }
+    }
 }

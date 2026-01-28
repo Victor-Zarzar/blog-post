@@ -7,5 +7,84 @@
     "description": "A critical error has occurred. Our team has been notified.",
     "errorId": "Error ID: {id}",
     "tryAgain": "Try again"
-  }
+  },
+  "Login": {
+    "title": "Login to your account",
+    "subtitle": "Enter your email below to login to your account",
+    "emailLabel": "Email",
+    "emailPlaceholder": "m@example.com",
+    "passwordLabel": "Password",
+    "forgotPassword": "Forgot your password?",
+    "submit": "Login",
+    "orContinueWith": "Or continue with",
+    "github": "Login with GitHub",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up",
+    "invalidemail": "Invalid email",
+    "passwordrequired": "Password is required",
+    "passwordmin": "Password must be at least 6 characters",
+    "passwordmax": "Password must be at most 100 characters",
+    "backToHome": "Back to Home"
+  },
+  "Signup": {
+    "title": "Create your account",
+    "subtitle": "Fill in the form below to create your account",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Email",
+    "emailPlaceholder": "m@example.com",
+    "emailHelp": "We'll use this to contact you. We will not share your email with anyone else.",
+    "passwordLabel": "Password",
+    "passwordHelp": "Must be at least 8 characters long.",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordHelp": "Please confirm your password.",
+    "submit": "Create Account",
+    "orContinueWith": "Or continue with",
+    "github": "Sign up with GitHub",
+    "alreadyHaveAccount": "Already have an account?",
+    "signin": "Sign in",
+    "namerequired": "Name is required",
+    "namemin": "Name must be at least 2 characters",
+    "namemax": "Name must be at most 100 characters",
+    "invalidemail": "Invalid email",
+    "passwordrequired": "Password is required",
+    "passwordmin": "Password must be at least 8 characters",
+    "passwordmax": "Password must be at most 100 characters",
+    "confirmrequired": "Confirm password is required",
+    "passwordsmustmatch": "Passwords do not match"
+  },
+    "PagesLayout": {
+      "brand": "TEN",
+      "searchPlaceholder": "Type to search...",
+      "signIn": "Sign in",
+      "createAccount": "Create account",
+      "nav": {
+        "home": "Home",
+        "readingList": "Reading list",
+        "tags": "Tags",
+        "about": "About",
+        "contact": "Contact"
+      },
+      "communityCard": {
+        "title": "TEN Community",
+        "subtitle": "A place for devs to share and grow.",
+        "ctaPrimary": "Create account",
+        "ctaSecondary": "Sign in"
+      },
+      "aboutCard": {
+        "title": "About",
+        "text": "Built with Next.js, TypeScript, Postgres, Prisma, and Docker."
+      },
+      "command": {
+        "navigate": "Navigate",
+         "account": "Account",
+         "empty": "No results."
+      },
+      "footer": {
+        "forYou": "For you",
+        "latest": "Latest",
+        "trending": "Trending"
+      }
+    }
+
 }
