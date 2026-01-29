@@ -1,36 +1,382 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center" id="header">
+  Blog Post - Full Stack Application (NextJS)
+</h1>
 
-## Getting Started
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
+</p>
 
-First, run the development server:
+<p align="center">
+  Modern full-stack blog platform built with Next.js, featuring Prisma ORM, authentication, internationalization, and containerized deployment.
+</p>
+
+---
+
+<h2 id="stack">
+  Tech Stack
+</h2>
+
+<p>
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/HTML.svg" width="48" title="HTML5"> 
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/TailwindCSS-Dark.svg" width="48" title="TailwindCSS">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/React-Dark.svg" width="48" title="React.js"> 
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/TypeScript.svg" width="48" title="TypeScript">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/NextJS-Dark.svg" width="48" title="Next.js"> 
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Prisma.svg" width="48" title="Prisma">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/PostgreSQL-Dark.svg" width="48" title="PostgreSQL">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Docker.svg" width="48" title="Docker">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Sentry.svg" width="48" title="Sentry">
+</p>
+
+### Core Technologies
+
+- **TypeScript** - Type-safe development
+- **React** - Latest React features
+- **Next.js** - React framework with App Router
+- **Prisma** - Next-generation ORM for type-safe database access
+- **PostgreSQL** - Robust relational database
+- **Tailwind CSS** - Utility-first CSS framework
+- **Docker** - Containerized deployment
+
+### Features & Integrations
+
+- **Authentication System** - Secure user authentication and session management
+- **Prisma ORM** - Type-safe database operations with PostgreSQL
+- **Zod & React Hook Form** - Form validation and management
+- **Shadcn UI** - Beautiful and accessible components
+- **Dark Mode** - Theme switching with Next Themes
+- **i18n** - Multi-language support (EN / PT-BR / ES) via Next Intl
+- **Nodemailer** - Email functionality
+- **Sanitize HTML** - XSS protection for user inputs
+- **Rate Limiter Flexible** - API endpoint rate limiting and DDoS protection
+- **Sentry** - Error tracking and performance monitoring tool
+
+---
+
+<h2 id="prerequisites">
+  Prerequisites
+</h2>
+
+Before starting, ensure you have the following installed:
+
+- [Bun](https://bun.sh/docs) (v1 or higher) – primary runtime & package manager
+- [Docker](https://www.docker.com/) – for containerized development and deployment
+- [Git](https://git-scm.com/)
+
+> Optional: [Node.js](https://nodejs.org/) (v22 or higher), if you prefer running the app with Node or using Node-based global tooling.
+
+---
+
+<h2 id="installation">
+  Installation & Setup
+</h2>
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Victor-Zarzar/blog-post
+cd blog-post
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Open in your editor (example: Zed Editor)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+zed .
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Environment Configuration
 
-## Learn More
+Copy the example environment file and configure your credentials:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env-example .env
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then edit `.env` with your actual values. The `.env-example` file contains detailed comments explaining each variable and how to obtain the necessary credentials.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Key configurations needed:**
 
-## Deploy on Vercel
+- **Database**: PostgreSQL connection string
+- **SMTP**: Gmail account and [App Password](https://support.google.com/accounts/answer/185833)
+- **Sentry**: DSN and authentication token from your [Sentry project](https://sentry.io/)
+- **Website URL**: Your production domain or `http://localhost:3000` for development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Important:** Never commit your `.env` file to version control. It's already in `.gitignore`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. Install Dependencies
+
+```bash
+make install
+```
+
+Or manually with bun:
+
+```bash
+bun install
+```
+
+### 5. Set Up Database
+
+```bash
+make db-migrate
+```
+
+Or manually:
+
+```bash
+bun prisma generate
+bun prisma migrate dev
+```
+
+### 6. Run the automated tests (Isolated Docker container)
+
+```bash
+make test
+```
+
+Or manually with bun:
+
+```bash
+bun test
+```
+
+---
+
+<h2 id="usage">
+  Usage
+</h2>
+
+### Available Commands
+
+View all available Make commands:
+
+```bash
+make help
+```
+
+### Local Development
+
+Start the development server (port 3000):
+
+```bash
+make dev
+```
+
+Access the application at `http://localhost:3000`
+
+### Docker Deployment
+
+#### Build and Run
+
+Build the Docker image and start the container:
+
+```bash
+make run
+```
+
+#### Stop Container
+
+```bash
+make stop
+```
+
+#### View Logs
+
+```bash
+make logs
+```
+
+Or directly with Docker:
+
+```bash
+docker logs -f blog-post
+```
+
+#### Access Container Shell
+
+```bash
+make shell
+```
+
+#### Clean Environment
+
+Remove containers, images, and build artifacts:
+
+```bash
+make clean
+```
+
+---
+
+<h2 id="makefile-commands">
+  Makefile Commands Reference
+</h2>
+
+| Command        | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `make install` | Install dependencies using bun                      |
+| `make dev`     | Run the app locally in development mode             |
+| `make prod`    | Run the app in production mode                      |
+| `make build`   | Build the Docker image                              |
+| `make run`     | Build and run the Docker container                  |
+| `make test`    | Run the automated tests (Isolated Docker container) |
+| `make stop`    | Stop and remove the container                       |
+| `make clean`   | Clean Docker environment and build files            |
+| `make logs`    | Display container logs in real-time                 |
+| `make shell`   | Access container shell (sh)                         |
+| `make help`    | Show all available commands                         |
+
+---
+
+<h2 id="development">
+  Development
+</h2>
+
+### Code Linting & Formatting
+
+Check for code issues with Biomejs:
+
+```bash
+bun biome check
+```
+
+Format all files and apply linting fixes:
+
+```bash
+bunx biome format --write
+```
+
+This command will automatically format your code according to the project's style rules and fix any auto-fixable linting issues.
+
+### Database Management
+
+```bash
+# Open Prisma Studio (Database GUI)
+bun prisma studio
+
+# Create a new migration
+bun prisma migrate dev --name your_migration_name
+
+# Reset database
+bun prisma migrate reset
+
+# Generate Prisma Client
+bun prisma generate
+```
+
+### Build for Production
+
+```bash
+make prod
+```
+
+---
+
+<h2 id="project-structure">
+  Project Structure
+</h2>
+
+```
+blog-post/
+├── .github/                        # GitHub configuration
+│   ├── workflows/                  # GitHub Actions workflows
+│   │   ├── main.yaml               # CI/CD pipeline
+│   │   └── codeql-analysis.yaml    # Code security analysis
+│   └── dependabot.yml              # Dependency updates configuration
+├── prisma/                         # Prisma ORM configuration
+│   ├── migrations/                 # Database migrations
+│   └── schema.prisma               # Database schema
+├── app/                            # Next.js App Router
+│   ├── (auth)/                     # Authentication routes
+│   ├── (blog)/                     # Blog routes
+│   ├── api/                        # API endpoints
+│   └── [...locale]/                # Internationalized routes
+├── components/                     # React components
+│   ├── ui/                         # UI components (Shadcn)
+│   ├── forms/                      # Form components
+│   └── shared/                     # Shared components
+├── lib/                            # Utility functions
+│   ├── auth/                       # Authentication utilities
+│   ├── db/                         # Database utilities
+│   └── utils/                      # General utilities
+├── public/                         # Static assets
+├── tests/                          # Automated tests
+├── .env-example                    # Environment variables template
+├── .env                            # Environment variables (not in git)
+├── Dockerfile                      # Docker configuration
+├── docker-compose.yaml             # Docker Compose configuration
+├── Makefile                        # Build automation
+├── next.config.js                  # Next.js configuration
+├── bun.lock                        # Bun package lock file
+├── tailwind.config.ts              # Tailwind configuration
+└── tsconfig.json                   # TypeScript configuration
+```
+
+---
+
+<h2 id="deployment">
+   Deployment
+</h2>
+
+### Vercel (Recommended - Production)
+
+The application is deployed on Vercel for production use.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Victor-Zarzar/blog-post)
+
+**Important:** Don't forget to add all environment variables from `.env-example` to your Vercel project settings.
+
+- **CI/CD Pipeline** - `.github/workflows/main.yaml` for automated checks and builds
+- **Dependabot** - Monthly dependency updates for GitHub Actions and dependencies
+
+### Docker (Optional - Local Development)
+
+Docker is available as an optional tool for local containerized development:
+
+```bash
+docker build -t blog-post:production .
+docker run -d -p 3000:3000 --name blog-post-prod blog-post:production
+```
+
+---
+
+<h2 id="contributing">
+  Contributing
+</h2>
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+<h2 id="license">
+  License
+</h2>
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<h2 id="contact">
+  Contact
+</h2>
+
+Victor Zarzar - [@Victor-Zarzar](https://github.com/Victor-Zarzar)
+
+Project Link: [https://github.com/Victor-Zarzar/blog-post](https://github.com/Victor-Zarzar/blog-post)
+
+---
+
+<p align="center">
+  Made with by Victor Zarzar
+</p>

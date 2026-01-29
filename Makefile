@@ -2,6 +2,7 @@
 DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
 COMPOSE = docker compose
+COMPOSE_FILE = docker-compose.yaml
 PORT = 3000
 DOCKER_TAG = 1.0.0
 
@@ -21,28 +22,22 @@ build:
 	docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) .
 
 run: build
-	docker run -d \
-		--name $(DOCKER_CONTAINER_NAME) \
-		-p $(PORT):3000 \
-		-v $(PWD):/app \
-		-v $(PWD)/prisma:/app/prisma \
-		-v /app/node_modules \
-		-v /app/.next \
-		$(DOCKER_IMAGE_NAME):$(DOCKER_TAG)
+	$(COMPOSE) -f $(COMPOSE_FILE) up
+
+run-down:
+	$(COMPOSE) -f $(COMPOSE_FILE) up --build
 
 stop:
-	docker stop $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
-	docker rm $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
+	$(COMPOSE) -f $(COMPOSE_FILE) down
 
 clean:
-	docker stop $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
-	docker rm $(DOCKER_CONTAINER_NAME) >/dev/null 2>&1 || true
+	$(COMPOSE) -f $(COMPOSE_FILE) down -v || true
 	docker rmi -f $(DOCKER_IMAGE_NAME) >/dev/null 2>&1 || true
 	docker system prune -af >/dev/null 2>&1 || true
 	sudo rm -rf node_modules .next >/dev/null 2>&1 || true
 
 logs:
-	docker logs -f $(DOCKER_CONTAINER_NAME)
+	$(COMPOSE) -f $(COMPOSE_FILE) logs -f
 
 shell:
 	docker exec -it $(DOCKER_CONTAINER_NAME) sh
