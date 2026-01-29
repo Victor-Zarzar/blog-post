@@ -2,14 +2,18 @@
 
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/shared/ui/card";
-import { Separator } from "@/app/shared/ui/separator";
-import { Button } from "@/app/shared/ui/button";
-
 import LangToggler from "@/app/features/lang-toggle/lang-toggle";
-import { cn } from "@/app/shared/lib/utils"
+import { cn } from "@/app/shared/lib/utils";
+import { Button } from "@/app/shared/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/app/shared/ui/card";
+import { Separator } from "@/app/shared/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui/tabs";
 
 export default function SettingsPage() {
   const t = useTranslations("Navbar");
@@ -69,9 +73,7 @@ export default function SettingsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Preferences</CardTitle>
-                <CardDescription>
-                  Ajuste aparência e idioma.
-                </CardDescription>
+                <CardDescription>Ajuste aparência e idioma.</CardDescription>
               </CardHeader>
 
               <CardContent className="space-y-6">
@@ -182,7 +184,7 @@ function ThemeCard({
       onClick={onClick}
       className={cn(
         "group rounded-xl border p-3 text-left transition hover:bg-accent/40",
-        active && "ring-2 ring-ring"
+        active && "ring-2 ring-ring",
       )}
       aria-pressed={active}
     >

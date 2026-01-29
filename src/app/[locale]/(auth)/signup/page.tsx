@@ -1,4 +1,4 @@
-import { GalleryVerticalEnd } from "lucide-react"
+import { GalleryVerticalEnd } from "lucide-react";
 
 import { SignupForm } from "@/app/features/signup-form/signup-form";
 
@@ -28,5 +28,5 @@ export default function SignupPage() {
         />
       </div>
     </div>
-  )
+  );
 }

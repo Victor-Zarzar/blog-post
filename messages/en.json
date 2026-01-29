@@ -53,38 +53,41 @@
     "confirmrequired": "Confirm password is required",
     "passwordsmustmatch": "Passwords do not match"
   },
-    "PagesLayout": {
-      "brand": "TEN",
-      "searchPlaceholder": "Type to search...",
-      "signIn": "Sign in",
-      "createAccount": "Create account",
-      "nav": {
-        "home": "Home",
-        "readingList": "Reading list",
-        "tags": "Tags",
-        "about": "About",
-        "contact": "Contact"
-      },
-      "communityCard": {
-        "title": "TEN Community",
-        "subtitle": "A place for devs to share and grow.",
-        "ctaPrimary": "Create account",
-        "ctaSecondary": "Sign in"
-      },
-      "aboutCard": {
-        "title": "About",
-        "text": "Built with Next.js, TypeScript, Postgres, Prisma, and Docker."
-      },
-      "command": {
-        "navigate": "Navigate",
-         "account": "Account",
-         "empty": "No results."
-      },
-      "footer": {
-        "forYou": "For you",
-        "latest": "Latest",
-        "trending": "Trending"
-      }
+  "PagesLayout": {
+    "brand": "TEN",
+    "searchPlaceholder": "Type to search...",
+    "signIn": "Sign in",
+    "createAccount": "Create account",
+    "nav": {
+      "home": "Home",
+      "readingList": "Reading list",
+      "tags": "Tags",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "communityCard": {
+      "title": "TEN Community",
+      "subtitle": "A place for devs to share and grow.",
+      "ctaPrimary": "Create account",
+      "ctaSecondary": "Sign in"
+    },
+    "aboutCard": {
+      "title": "About",
+      "text": "Built with Next.js, TypeScript, Postgres, Prisma, and Docker."
+    },
+    "command": {
+      "navigate": "Navigate",
+      "account": "Account",
+      "empty": "No results."
+    },
+    "footer": {
+      "forYou": "For you",
+      "latest": "Latest",
+      "trending": "Trending"
     }
-
+  },
+  "Unauthorized": {
+    "title": "Access denied",
+    "p": "You don't have permission to access this page."
+  }
 }

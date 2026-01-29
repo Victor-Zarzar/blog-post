@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { getDataPosts, type FeedTab } from "@/app/shared/data/getDataPosts";
+import { useMemo, useState } from "react";
+import type { FeedTab } from "@/app/shared/data/getDataPosts";
+import { getDataPosts } from "@/app/shared/data/getDataPosts";
 import {
   calculateReadingTime,
   formatReadingTime,
@@ -50,7 +51,7 @@ export default function HomePage() {
 
       {posts.map((post) => {
         const readingMinutes = calculateReadingTime(
-          `${post.title}\n${post.description}`
+          `${post.title}\n${post.description}`,
         );
         const readingTime = formatReadingTime(readingMinutes, locale);
 
@@ -83,7 +84,10 @@ export default function HomePage() {
 
             <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
               {post.tags.map((tag) => (
-                <span key={tag} className="cursor-pointer hover:text-foreground">
+                <span
+                  key={tag}
+                  className="cursor-pointer hover:text-foreground"
+                >
                   #{tag}
                 </span>
               ))}

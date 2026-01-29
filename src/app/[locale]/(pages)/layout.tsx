@@ -1,8 +1,8 @@
+import { useTranslations } from "next-intl";
 import type { NavItem } from "@/app/entities/nav/types";
 import CommandPalette from "@/app/features/command-palette/command-palette";
 import { Button } from "@/app/shared/ui/button";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
 
 const NAV_ITEMS: Array<NavItem> = [
   { label: "nav.home", link: "/" },
@@ -111,9 +111,7 @@ export default function PagesLayout({
             </div>
 
             <div className="rounded-lg border p-4">
-              <h4 className="text-sm font-semibold">
-                {t("aboutCard.title")}
-              </h4>
+              <h4 className="text-sm font-semibold">{t("aboutCard.title")}</h4>
 
               <p className="mt-2 text-sm text-muted-foreground">
                 {t("aboutCard.text")}

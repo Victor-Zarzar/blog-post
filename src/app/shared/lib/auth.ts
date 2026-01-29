@@ -1,6 +1,6 @@
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/app/shared/lib/prisma";
 import env from "@/env.mjs";
 
@@ -16,7 +16,9 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, user }) {
-      if (session.user) session.user.id = user.id;
+      if (session.user) {
+        session.user.id = user.id;
+      }
       return session;
     },
   },

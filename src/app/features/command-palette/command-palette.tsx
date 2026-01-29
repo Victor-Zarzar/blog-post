@@ -1,14 +1,9 @@
 "use client";
 
-import * as React from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import * as React from "react";
+import type { CommandLink } from "@/app/entities/command/types";
 import { Button } from "@/app/shared/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/app/shared/ui/dialog";
 import {
   Command,
   CommandEmpty,
@@ -18,8 +13,8 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/app/shared/ui/command";
-import type { CommandLink } from "@/app/entities/command/types";
-
+import { Dialog, DialogContent, DialogTitle } from "@/app/shared/ui/dialog";
+import { useRouter } from "@/i18n/navigation";
 
 export default function CommandPalette() {
   const t = useTranslations("PagesLayout");
@@ -66,9 +61,7 @@ export default function CommandPalette() {
         onClick={() => setOpen(true)}
       >
         <span className="text-muted-foreground">{t("searchPlaceholder")}</span>
-        <span className="ml-auto text-xs text-muted-foreground">
-          ⌘K
-        </span>
+        <span className="ml-auto text-xs text-muted-foreground">⌘K</span>
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>

@@ -6,6 +6,7 @@ import env from "@/env.mjs";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+import DevToolsGuard from "../guard/disable-dev-tools";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,7 @@ const translations: Record<
     description:
       "Software development blog with articles, tutorials and insights about programming, technologies, tools, career and trends in the dev world.",
     ogDescription:
-       "Articles and tutorials about development, programming and technology for devs.",
+      "Articles and tutorials about development, programming and technology for devs.",
   },
   es: {
     title: "TEN Blog | Comunidade Dev",
@@ -121,10 +122,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+      >
         <ThemeProvider enableSystem={true} attribute="class">
-        <NextIntlClientProvider>
-          {children}
+          <NextIntlClientProvider>
+            <DevToolsGuard />
+            {children}
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

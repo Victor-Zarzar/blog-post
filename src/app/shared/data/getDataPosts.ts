@@ -76,8 +76,12 @@ function byTrending(a: Post, b: Post) {
 export function getDataPosts(tab: FeedTab = "forYou"): Post[] {
   const list = [...POSTS];
 
-  if (tab === "latest") return list.sort(byLatest);
-  if (tab === "trending") return list.sort(byTrending);
+  if (tab === "latest") {
+    return list.sort(byLatest);
+  }
+  if (tab === "trending") {
+    return list.sort(byTrending);
+  }
 
   return list;
 }

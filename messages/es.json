@@ -53,37 +53,41 @@
     "confirmrequired": "La confirmación de contraseña es obligatoria",
     "passwordsmustmatch": "Las contraseñas no coinciden"
   },
-    "PagesLayout": {
-      "brand": "TEN",
-      "searchPlaceholder": "Escribe para buscar...",
-      "signIn": "Iniciar sesión",
-      "createAccount": "Crear cuenta",
-      "nav": {
-        "home": "Inicio",
-        "readingList": "Lista de lectura",
-        "tags": "Etiquetas",
-        "about": "Acerca de",
-        "contact": "Contacto"
-      },
-      "communityCard": {
-        "title": "TEN Community",
-        "subtitle": "Un espacio para que devs compartan y crezcan.",
-        "ctaPrimary": "Crear cuenta",
-        "ctaSecondary": "Iniciar sesión"
-      },
-      "aboutCard": {
-        "title": "Acerca de",
-        "text": "Hecho con Next.js, TypeScript, Postgres, Prisma y Docker."
-      },
-      "command": {
-        "navigate": "Navegar",
-        "account": "Cuenta",
-        "empty": "Ningún resultado."
-      },
-      "footer": {
-        "forYou": "Para ti",
-        "latest": "Más recientes",
-        "trending": "Más populares"
-      }
+  "PagesLayout": {
+    "brand": "TEN",
+    "searchPlaceholder": "Escribe para buscar...",
+    "signIn": "Iniciar sesión",
+    "createAccount": "Crear cuenta",
+    "nav": {
+      "home": "Inicio",
+      "readingList": "Lista de lectura",
+      "tags": "Etiquetas",
+      "about": "Acerca de",
+      "contact": "Contacto"
+    },
+    "communityCard": {
+      "title": "TEN Community",
+      "subtitle": "Un espacio para que devs compartan y crezcan.",
+      "ctaPrimary": "Crear cuenta",
+      "ctaSecondary": "Iniciar sesión"
+    },
+    "aboutCard": {
+      "title": "Acerca de",
+      "text": "Hecho con Next.js, TypeScript, Postgres, Prisma y Docker."
+    },
+    "command": {
+      "navigate": "Navegar",
+      "account": "Cuenta",
+      "empty": "Ningún resultado."
+    },
+    "footer": {
+      "forYou": "Para ti",
+      "latest": "Más recientes",
+      "trending": "Más populares"
     }
+  },
+  "Unauthorized": {
+    "title": "Acceso denegado",
+    "p": "No tienes permiso para acceder a esta página."
+  }
 }

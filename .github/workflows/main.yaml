@@ -1,0 +1,53 @@
+name: Main CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_ENV: test
+  SKIP_ENV_VALIDATION: "true"
+  NEXT_PUBLIC_DISABLE_DEVTOOLS: "true"
+  NEXT_PUBLIC_WEBSITE_URL: "http://localhost:3000"
+  DATABASE_URL: "postgresql://user:pass@localhost:5432/test_db"
+  NEXT_AUTH: "http://localhost:3000"
+  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+  GITHUB_CLIENT_ID: something
+  GITHUB_CLIENT_SECRET: something
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  SENTRY_RELEASE: ${{ secrets.SENTRY_RELEASE }}
+  SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+
+jobs:
+  build:
+    name: Bun CI
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "latest"
+
+      - name: Install deps
+        run: bun install --frozen-lockfile
+
+      - name: Typegen
+        run: bun run typegen
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Tests
+        run: bun run test
+
+      - name: Build
+        run: bun run build
