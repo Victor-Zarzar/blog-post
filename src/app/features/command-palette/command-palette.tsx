@@ -20,7 +20,7 @@ export default function CommandPalette() {
   const t = useTranslations("PagesLayout");
   const router = useRouter();
 
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const links: CommandLink[] = [
     { id: "home", labelKey: "nav.home", href: "/" },
@@ -31,25 +31,25 @@ export default function CommandPalette() {
   ];
 
   React.useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      const isK = e.key.toLowerCase() === "k";
-      const isCmdOrCtrl = e.metaKey || e.ctrlKey;
+    function onKeyDown(event: KeyboardEvent) {
+      if (
+        (event.key === "k" && (event.metaKey || event.ctrlKey)) ||
+        (event.code === "scape" && isOpen)
+      ) {
+        event.preventDefault();
 
-      if (isCmdOrCtrl && isK) {
-        e.preventDefault();
-        setOpen((v) => !v);
+        setIsOpen(!isOpen);
       }
-      if (e.key === "Escape") {
-        setOpen(false);
-      }
-    };
-
+    }
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen]);
 
   const go = (href: string) => {
-    setOpen(false);
+    setIsOpen(false);
     router.push(href);
   };
 
@@ -60,13 +60,13 @@ export default function CommandPalette() {
         variant="outline"
         size="sm"
         className="hidden h-9 w-[260px] justify-start gap-2 px-3 text-sm md:flex"
-        onClick={() => setOpen(true)}
+        onClick={() => setIsOpen(true)}
       >
         <span className="text-muted-foreground">{t("searchPlaceholder")}</span>
         <span className="ml-auto text-xs text-muted-foreground">⌘K</span>
       </Button>
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="p-0 overflow-hidden">
           <DialogTitle className="sr-only">{t("command.navigate")}</DialogTitle>
 

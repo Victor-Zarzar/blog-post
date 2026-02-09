@@ -1,6 +1,18 @@
 {
   "Navbar": {
-    "titlenavbar": "Blog Post"
+    "titlenavbar": "Blog Post",
+    "language": "Language",
+    "english": "English",
+    "portuguese": "Portuguese",
+    "spanish": "Spanish",
+    "settings": "Settings",
+    "dialog-description": "Customize your experience.",
+    "dark-mode": "Dark Mode",
+    "toggle-theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "close": "Close"
   },
   "GlobalError": {
     "title": "Application Error",
@@ -89,5 +101,90 @@
   "Unauthorized": {
     "title": "Access denied",
     "p": "You don't have permission to access this page."
+  },
+  "Settings": {
+    "page": {
+      "title": "Settings",
+      "subtitle": "App theme and language."
+    },
+    "nav": {
+      "title": "Settings",
+      "subtitle": "User preferences"
+    },
+    "Navbar": {
+      "english": "English",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "language": "Language",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account",
+      "appearance": "Appearance",
+      "notifications": "Notifications"
+    },
+    "header": {
+      "profileTitle": "Profile",
+      "profileSubtitle": "Your profile information and preferences.",
+      "accountTitle": "Account",
+      "accountSubtitle": "Account settings (email, password, etc).",
+      "appearanceTitle": "Preferences",
+      "appearanceSubtitle": "Adjust appearance and language.",
+      "notificationsTitle": "Notifications",
+      "notificationsSubtitle": "Notification preferences."
+    },
+    "content": {
+      "profile": {
+        "title": "Profile",
+        "description": "Placeholder for your user settings."
+      },
+      "account": {
+        "title": "Account",
+        "description": "Placeholder for future settings (email, password, etc)."
+      },
+      "appearance": {
+        "themeTitle": "Theme",
+        "themeDescription": "Select the dashboard theme.",
+        "languageTitle": "Language",
+        "languageDescription": "Switch language without reloading."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "description": "Placeholder (later you can plug email/push)."
+      }
+    },
+    "actions": {
+      "saveProfile": "Save profile",
+      "saveAccount": "Save account",
+      "saveNotifications": "Save notifications",
+      "updatePreferences": "Update preferences"
+    },
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "selected": "Selected",
+      "select": "Select"
+    }
+  },
+  "Cookies": {
+    "title": "We use cookies",
+    "accept": "Accept",
+    "decline": "Decline",
+    "message": "We use cookies to improve your experience.",
+    "privacyLink": "Read our Privacy Policy",
+    "error": "Error accepting cookies"
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred while loading this page. Don't worry — we've been notified and you can continue browsing normally.",
+    "return-home": "Back to Homepage"
+  },
+  "NotFound": {
+    "p": "Sorry, we couldn´t find this page.",
+    "button": "Back to Homepage"
   }
 }

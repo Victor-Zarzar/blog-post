@@ -34,7 +34,7 @@ clean:
 	$(COMPOSE) -f $(COMPOSE_FILE) down -v || true
 	docker rmi -f $(DOCKER_IMAGE_NAME) >/dev/null 2>&1 || true
 	docker system prune -af >/dev/null 2>&1 || true
-	sudo rm -rf node_modules .next >/dev/null 2>&1 || true
+	rm -rf node_modules .next >/dev/null 2>&1 || true
 
 logs:
 	$(COMPOSE) -f $(COMPOSE_FILE) logs -f

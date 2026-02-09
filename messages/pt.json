@@ -1,6 +1,18 @@
 {
   "Navbar": {
-    "titlenavbar": "Blog Post"
+    "titlenavbar": "Blog Post",
+    "language": "Linguagem",
+    "english": "Inglês",
+    "portuguese": "Português",
+    "spanish": "Espanhol",
+    "settings": "Configurações",
+    "dialog-description": "Personalize sua experiência.",
+    "dark-mode": "Modo escuro",
+    "toggle-theme": "Tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema",
+    "close": "Fechar"
   },
   "GlobalError": {
     "title": "Erro na aplicação",
@@ -89,5 +101,90 @@
   "Unauthorized": {
     "title": "Acesso negado",
     "p": "Você não tem permissão para acessar esta página."
+  },
+  "Settings": {
+    "page": {
+      "title": "Configurações",
+      "subtitle": "Tema e idioma do app."
+    },
+    "nav": {
+      "title": "Configurações",
+      "subtitle": "Preferências do usuário"
+    },
+    "Navbar": {
+      "english": "Inglês",
+      "spanish": "Espanhol",
+      "portuguese": "Português",
+      "language": "Idioma",
+      "light": "Claro",
+      "dark": "Escuro",
+      "system": "Sistema"
+    },
+    "tabs": {
+      "profile": "Perfil",
+      "account": "Conta",
+      "appearance": "Aparência",
+      "notifications": "Notificações"
+    },
+    "header": {
+      "profileTitle": "Perfil",
+      "profileSubtitle": "Informações e preferências do seu perfil.",
+      "accountTitle": "Conta",
+      "accountSubtitle": "Ajustes da conta (email, senha, etc).",
+      "appearanceTitle": "Preferências",
+      "appearanceSubtitle": "Ajuste aparência e idioma.",
+      "notificationsTitle": "Notificações",
+      "notificationsSubtitle": "Preferências de alertas e avisos."
+    },
+    "content": {
+      "profile": {
+        "title": "Perfil",
+        "description": "Placeholder pras tuas configurações de usuário."
+      },
+      "account": {
+        "title": "Conta",
+        "description": "Placeholder pra futuras configs (email, senha, etc)."
+      },
+      "appearance": {
+        "themeTitle": "Tema",
+        "themeDescription": "Selecione o tema do dashboard.",
+        "languageTitle": "Idioma",
+        "languageDescription": "Troque o idioma sem recarregar."
+      },
+      "notifications": {
+        "title": "Notificações",
+        "description": "Placeholder (depois tu pluga email/push)."
+      }
+    },
+    "actions": {
+      "saveProfile": "Salvar perfil",
+      "saveAccount": "Salvar conta",
+      "saveNotifications": "Salvar notificações",
+      "updatePreferences": "Atualizar preferências"
+    },
+    "theme": {
+      "light": "Claro",
+      "dark": "Escuro",
+      "system": "Sistema",
+      "selected": "Selecionado",
+      "select": "Selecionar"
+    }
+  },
+  "Cookies": {
+    "title": "Nós usamos cookies",
+    "accept": "Aceitar",
+    "decline": "Recusar",
+    "message": "Usamos cookies para melhorar sua experiência.",
+    "privacyLink": "Leia nossa Política de Privacidade",
+    "error": "Erro ao aceitar os cookies"
+  },
+  "Error": {
+    "title": "Algo deu errado",
+    "description": "Ocorreu um erro inesperado ao carregar esta página. Não se preocupe — já fomos notificados e você pode continuar navegando normalmente.",
+    "return-home": "Voltar à página inicial"
+  },
+  "NotFound": {
+    "p": "Desculpe, não conseguimos encontrar esta página.",
+    "button": "Voltar à página inicial"
   }
 }
