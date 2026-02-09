@@ -319,6 +319,24 @@ blog-post/
 
 ---
 
+<h2 id="screenshots">
+  Screenshots
+</h2>
+
+### Project Mockup
+
+<p align="center">
+  <img src="public/mockup.png" alt="mockup" width="1000" height="800">
+</p>
+
+### Project Architecture
+
+<p align="center">
+  <img src="public/architecture.png" alt="architecture" width="1000" height="800">
+</p>
+
+---
+
 <h2 id="deployment">
    Deployment
 </h2>
