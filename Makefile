@@ -45,7 +45,6 @@ shell:
 help:
 	@echo ""
 	@echo "Blog Post Makefile ($(DOCKER_TAG))"
-	@echo "====================================="
 	@echo ""
 	@echo "Local Commands:"
 	@echo "  make install          Install dependencies using bun"
