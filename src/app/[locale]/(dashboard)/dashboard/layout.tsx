@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import DevToolsGuard from "@/app/guard/disable-dev-tools";
 import { AppSidebar } from "@/app/shared/ui/app-sidebar";
 import {
   Breadcrumb,
@@ -14,9 +16,21 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/app/shared/ui/sidebar";
-import DevToolsGuard from "@/app/guard/disable-dev-tools";
+import { auth } from "@/lib/auth";
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session || !session.user.isAdmin) {
+    redirect("/auth/signin");
+  }
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -46,7 +60,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
         <main className="flex flex-1 flex-col p-4 pt-0">
           <DevToolsGuard unauthorizedPath="/dashboard/unauthorized" />
-          {children}</main>
+          {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

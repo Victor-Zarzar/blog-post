@@ -1,15 +1,24 @@
 import { betterAuth } from "better-auth";
+import {
+  customSessionClient,
+  lastLoginMethodClient,
+  twoFactorClient,
+} from "better-auth/client/plugins";
 import env from "@/env.mjs";
+import type { auth } from "@/lib/auth";
 
-export const auth = betterAuth({
+export const authClient = betterAuth({
   baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
-  emailAndPassword: {
-    enabled: true,
-  },
-  socialProviders: {
-    github: {
-      clientId: env.GITHUB_CLIENT_ID as string,
-      clientSecret: env.GITHUB_CLIENT_SECRET as string,
-    },
-  },
+  plugins: [
+    lastLoginMethodClient(),
+    customSessionClient<typeof auth>(),
+    twoFactorClient({
+      onTwoFactorRedirect() {
+        window.location.href = "/auth/two-factor";
+      },
+    }),
+  ],
 });
+
+const UserInfer = authClient.$Infer.Session.user;
+export type User = typeof UserInfer;

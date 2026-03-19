@@ -5,14 +5,14 @@
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
-  <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma">
+  <img src="https://img.shields.io/badge/Drizzle-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black" alt="Drizzle ORM">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
   <img src="https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
 </p>
 
 <p align="center">
-  Modern full-stack blog platform built with Next.js, featuring Prisma ORM, authentication, internationalization, and containerized deployment.
+  Modern full-stack blog platform built with Next.js, featuring Drizzle ORM, Better-Auth authentication, Redis (Cache service), internationalization, and containerized deployment.
 </p>
 
 ---
@@ -29,6 +29,7 @@
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/NextJS-Dark.svg" width="48" title="Next.js"> 
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Prisma.svg" width="48" title="Prisma">
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/PostgreSQL-Dark.svg" width="48" title="PostgreSQL">
+<img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Redis-Dark.svg" width="48" title="Redis">
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Docker.svg" width="48" title="Docker">
 <img src="https://github.com/tandpfun/skill-icons/blob/main/icons/Sentry.svg" width="48" title="Sentry">
 </p>
@@ -38,7 +39,6 @@
 - **TypeScript** - Type-safe development
 - **React** - Latest React features
 - **Next.js** - React framework with App Router
-- **Prisma** - Next-generation ORM for type-safe database access
 - **PostgreSQL** - Robust relational database
 - **Tailwind CSS** - Utility-first CSS framework
 - **Docker** - Containerized deployment
@@ -46,7 +46,7 @@
 ### Features & Integrations
 
 - **Authentication System** - Secure user authentication and session management
-- **Prisma ORM** - Type-safe database operations with PostgreSQL
+- **Drizzle ORM** - Type-safe ORM for PostgreSQL
 - **Zod & React Hook Form** - Form validation and management
 - **Shadcn UI** - Beautiful and accessible components
 - **Dark Mode** - Theme switching with Next Themes
@@ -55,6 +55,7 @@
 - **Sanitize HTML** - XSS protection for user inputs
 - **Rate Limiter Flexible** - API endpoint rate limiting and DDoS protection
 - **Sentry** - Error tracking and performance monitoring tool
+- **Redis** - In-memory cache layer for session storage and performance optimization
 
 ---
 

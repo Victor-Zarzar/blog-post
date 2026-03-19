@@ -16,6 +16,7 @@ const env = createEnv({
     SENTRY_RELEASE: z.string().optional(),
     SENTRY_ORG: z.string().optional(),
     SENTRY_PROJECT: z.string().optional(),
+    ADMIN_EMAIL: z.string(),
   },
 
   client: {
@@ -55,6 +56,7 @@ const env = createEnv({
     NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
     NEXT_PUBLIC_DISABLE_DEVTOOLS: process.env.NEXT_PUBLIC_DISABLE_DEVTOOLS,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
   },
 
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,

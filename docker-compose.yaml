@@ -13,6 +13,8 @@ services:
       - /app/.next
     depends_on:
       - postgres
+    networks:
+      - app-network
 
   postgres:
     image: postgres:17.7-alpine
@@ -22,8 +24,27 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    env_file:
+      - .env
     volumes:
       - postgres:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  redis:
+    image: redis:8-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
+    networks:
+      - app-network
 
 volumes:
   postgres:
+  redis-data:
+
+networks:
+  app-network:
+    driver: bridge
