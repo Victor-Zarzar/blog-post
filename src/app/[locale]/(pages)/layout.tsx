@@ -34,7 +34,7 @@ export default function PagesLayout({
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <Link href="/signin">
+            <Link href="/auth/signin">
               <Button
                 type="button"
                 variant="ghost"
@@ -45,7 +45,7 @@ export default function PagesLayout({
               </Button>
             </Link>
 
-            <Link href="/signup">
+            <Link href="/auth/signup">
               <Button
                 type="button"
                 variant="default"
@@ -88,7 +88,7 @@ export default function PagesLayout({
               </p>
 
               <div className="mt-3 grid gap-2">
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   <Button
                     type="button"
                     className="w-full font-medium"
@@ -98,7 +98,7 @@ export default function PagesLayout({
                   </Button>
                 </Link>
 
-                <Link href="/signin">
+                <Link href="/auth/signin">
                   <Button
                     type="button"
                     className="w-full font-medium"

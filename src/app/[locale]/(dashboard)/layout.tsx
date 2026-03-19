@@ -14,6 +14,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/app/shared/ui/sidebar";
+import DevToolsGuard from "@/app/guard/disable-dev-tools";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
@@ -43,7 +44,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <main className="flex flex-1 flex-col p-4 pt-0">{children}</main>
+        <main className="flex flex-1 flex-col p-4 pt-0">
+          <DevToolsGuard unauthorizedPath="/dashboard/unauthorized" />
+          {children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
