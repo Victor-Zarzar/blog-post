@@ -5,6 +5,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import env from "@/env.mjs";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
+import { getTranslations } from "next-intl/server";
 import LayoutProvider from "@/app/widgets/layout-provider/layout-provider";
 
 const geistSans = Geist({
@@ -16,33 +17,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const translations: Record<
-  string,
-  { title: string; description: string; ogDescription: string }
-> = {
-  pt: {
-    title: "TEN Blog | Comunidade Dev",
-    description:
-      "Blog sobre desenvolvimento de software com artigos, tutoriais e insights sobre programação, tecnologias, ferramentas, carreira e tendências no mundo dev.",
-    ogDescription:
-      "Artigos e tutoriais sobre desenvolvimento, programação e tecnologia para devs.",
-  },
-  en: {
-    title: "TEN Blog | Dev Community",
-    description:
-      "Software development blog with articles, tutorials and insights about programming, technologies, tools, career and trends in the dev world.",
-    ogDescription:
-      "Articles and tutorials about development, programming and technology for devs.",
-  },
-  es: {
-    title: "TEN Blog | Comunidade Dev",
-    description:
-      "Blog sobre desarrollo de software con artículos, tutoriales e insights sobre programación, tecnologías, herramientas, carrera y tendencias en el mundo dev.",
-    ogDescription:
-      "Artículos y tutoriales sobre desarrollo, programación y tecnología para devs.",
-  },
-};
 
 const ogLocaleMap: Record<string, string> = {
   pt: "pt_BR",
@@ -56,20 +30,24 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const meta = translations[locale] || translations.en;
+  const t = await getTranslations({ locale, namespace: "Layout" });
+
+  const title = t("title");
+  const description = t("description");
+  const ogDescription = t("ogDescription");
 
   return {
     metadataBase: new URL(env.NEXT_PUBLIC_WEBSITE_URL),
-    title: meta.title,
-    description: meta.description,
+    title: title,
+    description: description,
     openGraph: {
-      title: meta.title,
-      description: meta.ogDescription,
+      title: title,
+      description: ogDescription,
       url: `${env.NEXT_PUBLIC_WEBSITE_URL}/${locale}`,
       siteName: "TEN Blog | Dev Community",
       images: [
         {
-          url: "/og-image.png",
+          url: "/static/og-image.png",
           width: 1200,
           height: 630,
         },
@@ -86,8 +64,9 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
+      icon: "/static/favicon.ico",
+      shortcut: "/static/favicon.ico",
+      apple: "/static/favicon.ico",
     },
     robots: {
       index: true,

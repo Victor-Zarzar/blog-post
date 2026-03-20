@@ -378,24 +378,28 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-<h2 id="license">
-  License
-</h2>
+<h2 id="contributing">Contributing</h2>
+
+1. Fork the project
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+Report issues at: https://github.com/Victor-Zarzar/my-portoflio/issues
+
+---
+
+<h2 id="license">License</h2>
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-<h2 id="contact">
-  Contact
-</h2>
+<h2 id="author">Author</h2>
 
 Victor Zarzar - [@Victor-Zarzar](https://github.com/Victor-Zarzar)
 
-Project Link: [https://github.com/Victor-Zarzar/blog-post](https://github.com/Victor-Zarzar/blog-post)
+Project Link: [https://github.com/Victor-Zarzar/my-portoflio](https://github.com/Victor-Zarzar/my-portoflio)
 
 ---
-
-<p align="center">
-  Made with by Victor Zarzar
-</p>

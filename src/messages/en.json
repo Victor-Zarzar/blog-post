@@ -1,4 +1,9 @@
 {
+  "Layout": {
+    "title": "TEN Blog | Dev Community",
+    "description": "Software development blog with articles, tutorials and insights about programming, technologies, tools, career and trends in the dev world.",
+    "ogDescription": "Articles and tutorials about development, programming and technology for devs."
+  },
   "Navbar": {
     "titlenavbar": "Blog Post",
     "language": "Language",

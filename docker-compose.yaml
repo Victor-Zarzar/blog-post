@@ -1,5 +1,7 @@
 services:
   nextjs-app:
+    container_name: blog-post
+    image: blog-post:dev
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,11 +19,13 @@ services:
       - app-network
 
   postgres:
+    container_name: blog-postgres
     image: postgres:17.7-alpine
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog_post
     ports:
       - "5432:5432"
     env_file:
@@ -32,6 +36,7 @@ services:
       - app-network
 
   redis:
+    container_name: blog-redis
     image: redis:8-alpine
     ports:
       - "6379:6379"

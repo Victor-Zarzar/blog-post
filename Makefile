@@ -2,7 +2,7 @@
 DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
 COMPOSE = docker compose
-COMPOSE_FILE = docker-compose.yaml
+DEV_COMPOSE_FILE = docker-compose.yaml
 PORT = 3000
 DOCKER_TAG = 1.0.0
 
@@ -22,22 +22,22 @@ build:
 	docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) .
 
 run: build
-	$(COMPOSE) -f $(COMPOSE_FILE) up
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) up
 
 run-down:
-	$(COMPOSE) -f $(COMPOSE_FILE) up --build
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down
 
 stop:
-	$(COMPOSE) -f $(COMPOSE_FILE) down
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down
 
-clean:
-	$(COMPOSE) -f $(COMPOSE_FILE) down -v || true
-	docker rmi -f $(DOCKER_IMAGE_NAME) >/dev/null 2>&1 || true
+clean: stop
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down -v || true
+	docker rmi -f $(DOCKER_IMAGE_NAME):dev $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
 	docker system prune -af >/dev/null 2>&1 || true
 	rm -rf node_modules .next >/dev/null 2>&1 || true
 
 logs:
-	$(COMPOSE) -f $(COMPOSE_FILE) logs -f
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) logs -f
 
 shell:
 	docker exec -it $(DOCKER_CONTAINER_NAME) sh
@@ -51,14 +51,11 @@ help:
 	@echo "  make dev              Run the app locally in development mode"
 	@echo "  make gen-secret       Generate a secret key for NextAuth"
 	@echo ""
-	@echo "Production Commands:"
-	@echo "  bun run build        Run the app in production mode"
-	@echo ""
-	@echo "Docker Commands:"
-	@echo "  make build            Build the Docker image"
-	@echo "  make run              Run the Docker container"
-	@echo "  make stop             Stop and remove the container"
-	@echo "  make clean            Remove image and clean environment"
-	@echo "  make logs             Show container logs"
+	@echo "Dev Docker Commands:"
+	@echo "  make build-dev        Build the dev Docker image"
+	@echo "  make run              Build and run dev compose"
+	@echo "  make run-down         Stop dev compose (keep volumes)"
+	@echo "  make stop             Stop and remove dev containers"
+	@echo "  make logs             Show dev container logs"
 	@echo "  make shell            Access container shell"
 	@echo ""
