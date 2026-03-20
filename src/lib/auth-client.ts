@@ -1,13 +1,13 @@
-import { betterAuth } from "better-auth";
 import {
   customSessionClient,
   lastLoginMethodClient,
   twoFactorClient,
 } from "better-auth/client/plugins";
+import { createAuthClient } from "better-auth/react";
 import env from "@/env.mjs";
 import type { auth } from "@/lib/auth";
 
-export const authClient = betterAuth({
+export const authClient = createAuthClient({
   baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
   plugins: [
     lastLoginMethodClient(),

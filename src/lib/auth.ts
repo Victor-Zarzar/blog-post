@@ -8,13 +8,17 @@ import {
 } from "better-auth/plugins";
 import env from "@/env.mjs";
 import { db } from "@/lib/db";
+import * as authSchema from "./db/auth-schema";
 
 export const auth = betterAuth({
+  appName: "Blog Post",
+  baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
+  telemetry: { enabled: false },
   database: drizzleAdapter(db, {
     provider: "pg",
+    schema: authSchema,
+    usePlural: false,
   }),
-  appName: "Blogg Post",
-  baseURL: env.NEXT_PUBLIC_WEBSITE_URL,
   emailAndPassword: {
     enabled: true,
   },
