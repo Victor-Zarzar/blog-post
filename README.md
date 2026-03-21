@@ -103,7 +103,6 @@ Then edit `.env` with your actual values. The `.env-example` file contains detai
 **Key configurations needed:**
 
 - **Database**: PostgreSQL connection string
-- **SMTP**: Gmail account and [App Password](https://support.google.com/accounts/answer/185833)
 - **Sentry**: DSN and authentication token from your [Sentry project](https://sentry.io/)
 - **Website URL**: Your production domain or `http://localhost:3000` for development
 
@@ -130,8 +129,8 @@ make db-migrate
 Or manually:
 
 ```bash
-bun prisma generate
-bun prisma migrate dev
+bun db:generate
+bun db:migrate
 ```
 
 ### 6. Run the automated tests (Isolated Docker container)
@@ -212,28 +211,6 @@ Remove containers, images, and build artifacts:
 make clean
 ```
 
----
-
-<h2 id="makefile-commands">
-  Makefile Commands Reference
-</h2>
-
-| Command        | Description                                         |
-| -------------- | --------------------------------------------------- |
-| `make install` | Install dependencies using bun                      |
-| `make dev`     | Run the app locally in development mode             |
-| `make prod`    | Run the app in production mode                      |
-| `make build`   | Build the Docker image                              |
-| `make run`     | Build and run the Docker container                  |
-| `make test`    | Run the automated tests (Isolated Docker container) |
-| `make stop`    | Stop and remove the container                       |
-| `make clean`   | Clean Docker environment and build files            |
-| `make logs`    | Display container logs in real-time                 |
-| `make shell`   | Access container shell (sh)                         |
-| `make help`    | Show all available commands                         |
-
----
-
 <h2 id="development">
   Development
 </h2>
@@ -257,65 +234,20 @@ This command will automatically format your code according to the project's styl
 ### Database Management
 
 ```bash
-# Open Prisma Studio (Database GUI)
-bun prisma studio
+# Generate
+bun db:generate
 
 # Create a new migration
-bun prisma migrate dev --name your_migration_name
+bun db:migrate
 
-# Reset database
-bun prisma migrate reset
-
-# Generate Prisma Client
-bun prisma generate
+# Open Drizzle Studio (Database GUI)
+bun db:studio
 ```
 
 ### Build for Production
 
 ```bash
 make prod
-```
-
----
-
-<h2 id="project-structure">
-  Project Structure
-</h2>
-
-```
-blog-post/
-├── .github/                        # GitHub configuration
-│   ├── workflows/                  # GitHub Actions workflows
-│   │   ├── main.yaml               # CI/CD pipeline
-│   │   └── codeql-analysis.yaml    # Code security analysis
-│   └── dependabot.yml              # Dependency updates configuration
-├── prisma/                         # Prisma ORM configuration
-│   ├── migrations/                 # Database migrations
-│   └── schema.prisma               # Database schema
-├── app/                            # Next.js App Router
-│   ├── (auth)/                     # Authentication routes
-│   ├── (blog)/                     # Blog routes
-│   ├── api/                        # API endpoints
-│   └── [...locale]/                # Internationalized routes
-├── components/                     # React components
-│   ├── ui/                         # UI components (Shadcn)
-│   ├── forms/                      # Form components
-│   └── shared/                     # Shared components
-├── lib/                            # Utility functions
-│   ├── auth/                       # Authentication utilities
-│   ├── db/                         # Database utilities
-│   └── utils/                      # General utilities
-├── public/                         # Static assets
-├── tests/                          # Automated tests
-├── .env-example                    # Environment variables template
-├── .env                            # Environment variables (not in git)
-├── Dockerfile                      # Docker configuration
-├── docker-compose.yaml             # Docker Compose configuration
-├── Makefile                        # Build automation
-├── next.config.js                  # Next.js configuration
-├── bun.lock                        # Bun package lock file
-├── tailwind.config.ts              # Tailwind configuration
-└── tsconfig.json                   # TypeScript configuration
 ```
 
 ---
@@ -386,7 +318,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch
 5. Open a Pull Request
 
-Report issues at: https://github.com/Victor-Zarzar/my-portoflio/issues
+Report issues at: https://github.com/Victor-Zarzar/blog-post/issues
 
 ---
 
@@ -400,6 +332,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Victor Zarzar - [@Victor-Zarzar](https://github.com/Victor-Zarzar)
 
-Project Link: [https://github.com/Victor-Zarzar/my-portoflio](https://github.com/Victor-Zarzar/my-portoflio)
+Project Link: [https://github.com/Victor-Zarzar/blog-post](https://github.com/Victor-Zarzar/blog-post)
 
 ---
