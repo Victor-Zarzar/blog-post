@@ -1,5 +1,6 @@
 import {
   customSessionClient,
+  emailOTPClient,
   lastLoginMethodClient,
   twoFactorClient,
 } from "better-auth/client/plugins";
@@ -12,6 +13,7 @@ export const authClient = createAuthClient({
   plugins: [
     lastLoginMethodClient(),
     customSessionClient<typeof auth>(),
+    emailOTPClient(),
     twoFactorClient({
       onTwoFactorRedirect() {
         window.location.href = "/auth/two-factor";

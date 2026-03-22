@@ -32,7 +32,12 @@ export default function LayoutProvider({
 
   return (
     <>
-      <ThemeProvider enableSystem={true} attribute="class">
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
         <DevToolsGuard />
         {children}
         <Toaster position="top-right" expand={true} />

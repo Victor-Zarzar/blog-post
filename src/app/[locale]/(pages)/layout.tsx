@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
-import type { NavItem } from "@/app/entities/nav/types";
 import CommandPalette from "@/app/features/command-palette/command-palette";
+import type { NavItem } from "@/app/shared/types/nav/nav";
 import { Button } from "@/app/shared/ui/button";
 import { Link } from "@/i18n/navigation";
 

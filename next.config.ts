@@ -6,6 +6,19 @@ import env from "@/env.mjs";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   output: "standalone",
+  images: {
+    qualities: [75, 90],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.dev.to",
+      },
+      {
+        protocol: "https",
+        hostname: "**.amazonaws.com",
+      },
+    ],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
@@ -22,6 +35,4 @@ export default withSentryConfig(withNextIntl(nextConfig), {
   },
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  disableLogger: true,
-  automaticVercelMonitors: true,
 });

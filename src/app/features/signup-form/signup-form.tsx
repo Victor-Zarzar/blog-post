@@ -22,42 +22,29 @@ import {
   FormMessage,
 } from "@/app/shared/ui/form";
 import { Input } from "@/app/shared/ui/input";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
   const t = useTranslations("Signup");
+  const router = useRouter();
 
-  const formSchema = z
-    .object({
-      name: z
-        .string()
-        .min(1, t("namerequired"))
-        .min(2, t("namemin"))
-        .max(100, t("namemax")),
-      email: z.email(t("invalidemail")),
-      password: z
-        .string()
-        .min(1, t("passwordrequired"))
-        .min(8, t("passwordmin"))
-        .max(100, t("passwordmax")),
-      confirmPassword: z
-        .string()
-        .min(1, t("confirmrequired"))
-        .min(8, t("passwordmin"))
-        .max(100, t("passwordmax")),
-    })
-    .superRefine(({ password, confirmPassword }, ctx) => {
-      if (password !== confirmPassword) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["confirmPassword"],
-          message: t("passwordsmustmatch"),
-        });
-      }
-    });
+  const formSchema = z.object({
+    name: z
+      .string()
+      .min(1, t("namerequired"))
+      .min(2, t("namemin"))
+      .max(100, t("namemax")),
+    email: z.email(t("invalidemail")),
+    password: z
+      .string()
+      .min(1, t("passwordrequired"))
+      .min(8, t("passwordmin"))
+      .max(100, t("passwordmax")),
+  });
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -65,12 +52,27 @@ export function SignupForm({
       name: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
   async function handleSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const { error } = await authClient.signUp.email(
+      {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      },
+      {
+        async onSuccess(context) {
+          if (context.data) {
+            router.push("/auth/signin");
+          }
+        },
+      },
+    );
+    if (error) {
+      form.setError("root", { message: error.message });
+    }
   }
 
   return (
@@ -163,34 +165,6 @@ export function SignupForm({
             )}
           />
 
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <Field>
-                  <FormLabel asChild>
-                    <FieldLabel htmlFor="confirm-password">
-                      {t("confirmPasswordLabel")}
-                    </FieldLabel>
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      id="confirm-password"
-                      type="password"
-                      autoComplete="new-password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FieldDescription>
-                    {t("confirmPasswordHelp")}
-                  </FieldDescription>
-                </Field>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <Field>
             <Button type="submit">{t("submit")}</Button>
           </Field>
@@ -210,7 +184,7 @@ export function SignupForm({
 
             <FieldDescription className="px-6 text-center">
               {t("alreadyHaveAccount")}{" "}
-              <Link href="/signin">{t("signin")}</Link>
+              <Link href="/auth/signin">{t("signin")}</Link>
             </FieldDescription>
           </Field>
         </FieldGroup>

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import * as React from "react";
-import type { CommandLink } from "@/app/entities/command/types";
+import type { CommandLink } from "@/app/shared/types/command/command";
 import { Button } from "@/app/shared/ui/button";
 import {
   Command,

@@ -25,7 +25,7 @@ import { Input } from "@/app/shared/ui/input";
 import { Link, useRouter } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth-client";
 
-export function LoginForm({
+export function SigninForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
@@ -163,7 +163,10 @@ export function LoginForm({
 
             <FieldDescription className="text-center">
               {t("noAccount")}{" "}
-              <Link href="/signup" className="underline underline-offset-4">
+              <Link
+                href="/auth/signup"
+                className="underline underline-offset-4"
+              >
                 {t("signup")}
               </Link>
             </FieldDescription>

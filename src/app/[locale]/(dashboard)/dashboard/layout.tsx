@@ -27,7 +27,7 @@ export default async function DashboardLayout({
     headers: await headers(),
   });
 
-  if (!session || !session.user.isAdmin) {
+  if (!session) {
     redirect("/auth/signin");
   }
 

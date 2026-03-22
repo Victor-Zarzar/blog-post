@@ -30,6 +30,9 @@ run-down:
 stop:
 	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down
 
+db-migrate:
+	$(COMPOSE) -f $(DEV_COMPOSE_FILE) exec nextjs-app bun db:migrate
+
 clean: stop
 	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down -v || true
 	docker rmi -f $(DOCKER_IMAGE_NAME):dev $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
