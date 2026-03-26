@@ -8,6 +8,9 @@ const env = createEnv({
       .default("development"),
 
     DATABASE_URL: z.url(),
+    POSTGRES_USER: z.string(),
+    POSTGRES_PASSWORD: z.string(),
+    POSTGRES_DB: z.string(),
     BETTER_AUTH_SECRET: z.string().min(32),
     BETTER_AUTH_URL: z.url(),
     SMTP_EMAIL: z.email(),
@@ -17,6 +20,8 @@ const env = createEnv({
     SMTP_FROM: z.email(),
     GITHUB_CLIENT_ID: z.string().min(1),
     GITHUB_CLIENT_SECRET: z.string().min(1),
+    REDIS_URL: z.string(),
+    GOOGLE_RECAPTCHA_SECRET_KEY: z.string(),
     SENTRY_AUTH_TOKEN: z.string().optional(),
     SENTRY_RELEASE: z.string().optional(),
     SENTRY_ORG: z.string().optional(),
@@ -48,11 +53,15 @@ const env = createEnv({
       }),
 
     NEXT_PUBLIC_SENTRY_DSN: z.url().optional(),
+    NEXT_PUBLIC_GOOGLE_RECAPTCHA_PUBLIC_KEY: z.string(),
   },
 
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     DATABASE_URL: process.env.DATABASE_URL,
+    POSTGRES_USER: process.env.POSTGRES_USER,
+    POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
+    POSTGRES_DB: process.env.POSTGRES_DB,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
     SMTP_EMAIL: process.env.SMTP_EMAIL,
@@ -62,6 +71,10 @@ const env = createEnv({
     SMTP_FROM: process.env.SMTP_FROM,
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    REDIS_URL: process.env.REDIS_URL,
+    GOOGLE_RECAPTCHA_SECRET_KEY: process.env.GOOGLE_RECAPTCHA_SECRET_KEY,
+    NEXT_PUBLIC_GOOGLE_RECAPTCHA_PUBLIC_KEY:
+      process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_PUBLIC_KEY,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     SENTRY_RELEASE: process.env.SENTRY_RELEASE,
     SENTRY_ORG: process.env.SENTRY_ORG,

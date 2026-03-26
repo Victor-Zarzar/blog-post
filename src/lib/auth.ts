@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import {
+  captcha,
   customSession,
   emailOTP,
   lastLoginMethod,
@@ -12,6 +13,7 @@ import sanitizeHtml from "sanitize-html";
 import env from "@/env.mjs";
 import { db } from "@/lib/db";
 import * as authSchema from "./db/auth-schema";
+import { redis } from "./redis/client";
 
 const transporter = nodemailer.createTransport({
   host: env.SMTP_HOST,
@@ -35,6 +37,28 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  secondaryStorage: {
+    get: async (key) => {
+      const value = await redis.get(key);
+      return value ?? null;
+    },
+    set: async (key, value, ttl) => {
+      await redis.set(key, value);
+
+      if (ttl) {
+        await redis.expire(key, ttl);
+      }
+    },
+    delete: async (key) => {
+      await redis.del(key);
+    },
+  },
+  rateLimit: {
+    enabled: true,
+    window: 60,
+    max: 5,
+    storage: "secondary-storage",
+  },
   session: {
     expiresIn: 60 * 60 * 24 * 1,
     updateAge: 60 * 60 * 6,
@@ -51,6 +75,10 @@ export const auth = betterAuth({
     lastLoginMethod(),
     twoFactor({
       issuer: "Blog Post",
+    }),
+    captcha({
+      provider: "google-recaptcha",
+      secretKey: env.GOOGLE_RECAPTCHA_SECRET_KEY,
     }),
     emailOTP({
       async sendVerificationOTP({ email, otp, type }) {

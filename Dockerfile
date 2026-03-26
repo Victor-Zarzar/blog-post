@@ -6,7 +6,7 @@ RUN apk add --no-cache python3 make g++
 
 COPY package.json bun.lock* ./
 
-RUN bun install --frozen-lockfile
+RUN bun install
 
 EXPOSE 3000
 
