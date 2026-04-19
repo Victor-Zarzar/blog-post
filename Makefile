@@ -1,10 +1,19 @@
 # Makefile - Blog Post
+PROJECT_NAME = Blog Post
 DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
 COMPOSE = docker compose
-DEV_COMPOSE_FILE = docker-compose.yaml
+DE = docker exec -it
+DEV = docker compose -f docker-compose.dev.yaml
+PROD = docker compose -f docker-compose.prod.yaml
+EXEC_APP = exec nextjs-app
 PORT = 3000
-DOCKER_TAG = 1.0.0
+DB_PORT = 5432
+DB_CONTAINER_NAME = blog-postgres
+DB_USER = postgres
+POSTGRES_DB = blog_post
+DB_PASS = postgres
+DOCKER_TAG = $(shell node -p "require('./package.json').version")
 
 gen-secret:
 	openssl rand -base64 64
@@ -18,42 +27,39 @@ dev: install
 prod:
 	bun run build
 
-build:
-	docker build -t $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) .
-
-run: build
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) up
+run:
+	$(DEV) up --build
 
 run-down:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down
-
-stop:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down
+	$(DEV) down
 
 db-migrate:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) exec nextjs-app bun db:migrate
+	$(DEV) $(EXEC_APP) bun db:migrate
 
 db-studio:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) exec nextjs-app bun db:studio
+	$(DEV) $(EXEC_APP) bun db:studio
 
 db-seed:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) exec nextjs-app bun db:seed
+	$(DEV) $(EXEC_APP) bun db:seed
 
-clean: stop
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) down -v || true
-	docker rmi -f $(DOCKER_IMAGE_NAME):dev $(DOCKER_IMAGE_NAME):$(DOCKER_TAG) >/dev/null 2>&1 || true
+clean: run-down
+	$(DEV) down -v --remove-orphans --rmi local 2>/dev/null || true
+	$(PROD) down -v --remove-orphans --rmi local 2>/dev/null || true
 	docker system prune -af >/dev/null 2>&1 || true
 	rm -rf node_modules .next >/dev/null 2>&1 || true
 
 logs:
-	$(COMPOSE) -f $(DEV_COMPOSE_FILE) logs -f
+	$(DEV) logs -f
 
 shell:
-	docker exec -it $(DOCKER_CONTAINER_NAME) sh
+	$(DE) $(DOCKER_CONTAINER_NAME) sh
+
+access-db-local:
+	$(DE) $(DB_CONTAINER_NAME) psql -U $(DB_USER) -d $(POSTGRES_DB)
 
 help:
 	@echo ""
-	@echo "Blog Post Makefile ($(DOCKER_TAG))"
+	@echo "$(PROJECT_NAME) v$(DOCKER_TAG)"
 	@echo ""
 	@echo "Local Commands:"
 	@echo "  make install          Install dependencies using bun"
