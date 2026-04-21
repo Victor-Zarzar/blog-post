@@ -33,13 +33,13 @@ run:
 run-down:
 	$(DEV) down
 
-db-migrate:
+migrate:
 	$(DEV) $(EXEC_APP) bun db:migrate
 
-db-studio:
+studio:
 	$(DEV) $(EXEC_APP) bun db:studio
 
-db-seed:
+seed:
 	$(DEV) $(EXEC_APP) bun db:seed
 
 clean: run-down

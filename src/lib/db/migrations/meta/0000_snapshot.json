@@ -1,5 +1,5 @@
 {
-  "id": "b6f353a9-6c13-4cf8-9265-8937efec9153",
+  "id": "62a535a6-bdff-433a-952d-e4b2466a408e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -662,6 +662,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "verified": {
+          "name": "verified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
         },
         "user_id": {
           "name": "user_id",

@@ -8,6 +8,7 @@ import "./globals.css";
 import { getTranslations } from "next-intl/server";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import LayoutProvider from "@/app/widgets/layout-provider/layout-provider";
+import { QueryClientWrapper } from "../shared/wrapper/query-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -106,7 +107,9 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider>
           <NuqsAdapter>
-            <LayoutProvider>{children}</LayoutProvider>
+            <QueryClientWrapper>
+              <LayoutProvider>{children}</LayoutProvider>
+            </QueryClientWrapper>
           </NuqsAdapter>
         </NextIntlClientProvider>
       </body>
