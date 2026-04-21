@@ -191,5 +191,24 @@
   "NotFound": {
     "p": "Lo sentimos, no pudimos encontrar esta página.",
     "button": "Volver a la página de inicio"
+  },
+  "ResetPassword": {
+    "title": "Restablecer contraseña",
+    "subtitle": "Introduce tu nueva contraseña para restablecer tu cuenta.",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Introduce tu nueva contraseña",
+    "confirmPasswordLabel": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "Confirma tu nueva contraseña",
+    "passwordRequired": "La contraseña es obligatoria",
+    "confirmPasswordRequired": "La confirmación de la contraseña es obligatoria",
+    "passwordMin": "La contraseña debe tener al menos 6 caracteres",
+    "passwordMax": "La contraseña debe tener como máximo 100 caracteres",
+    "passwordsDoNotMatch": "Las contraseñas no coinciden",
+    "missingToken": "Token no proporcionado",
+    "submit": "Restablecer contraseña",
+    "rememberedPassword": "¿Recordaste tu contraseña?",
+    "signin": "Iniciar sesión",
+    "backToSignin": "Volver al inicio de sesión",
+    "backToHome": "Volver al inicio"
   }
 }

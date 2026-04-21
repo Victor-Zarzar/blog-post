@@ -191,5 +191,24 @@
   "NotFound": {
     "p": "Desculpe, não conseguimos encontrar esta página.",
     "button": "Voltar à página inicial"
+  },
+  "ResetPassword": {
+    "title": "Redefinir senha",
+    "subtitle": "Digite sua nova senha para redefinir sua conta.",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Digite sua nova senha",
+    "confirmPasswordLabel": "Confirmar senha",
+    "confirmPasswordPlaceholder": "Confirme sua nova senha",
+    "passwordRequired": "Senha é obrigatória",
+    "confirmPasswordRequired": "Confirmação de senha é obrigatória",
+    "passwordMin": "A senha deve ter no mínimo 6 caracteres",
+    "passwordMax": "A senha deve ter no máximo 100 caracteres",
+    "passwordsDoNotMatch": "As senhas não coincidem",
+    "missingToken": "Token não fornecido",
+    "submit": "Redefinir senha",
+    "rememberedPassword": "Lembrou da senha?",
+    "signin": "Entrar",
+    "backToSignin": "Voltar para login",
+    "backToHome": "Voltar para início"
   }
 }

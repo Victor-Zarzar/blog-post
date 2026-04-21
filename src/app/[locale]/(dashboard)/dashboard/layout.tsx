@@ -2,14 +2,6 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import DevToolsGuard from "@/app/guard/disable-dev-tools";
 import { AppSidebar } from "@/app/shared/ui/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/app/shared/ui/breadcrumb";
 import { Separator } from "@/app/shared/ui/separator";
 import {
   SidebarInset,
@@ -42,19 +34,6 @@ export default async function DashboardLayout({
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage />
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
           </div>
         </header>
 

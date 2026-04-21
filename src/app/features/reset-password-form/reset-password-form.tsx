@@ -2,8 +2,10 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { parseAsString, useQueryState } from "nuqs";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 import { cn } from "@/app/shared/lib/utils";
 import { Button } from "@/app/shared/ui/button";
 import {
@@ -31,50 +33,79 @@ import { Input } from "@/app/shared/ui/input";
 import { Link, useRouter } from "@/i18n/navigation";
 import { authClient } from "@/lib/auth-client";
 
-export function SigninForm({
+export function ResetPasswordForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const t = useTranslations("Login");
+  const t = useTranslations("ResetPassword");
   const router = useRouter();
 
-  const formSchema = z.object({
-    email: z.email(t("invalidemail")),
-    password: z
-      .string()
-      .min(1, t("passwordrequired"))
-      .min(6, t("passwordmin"))
-      .max(100, t("passwordmax")),
-  });
+  const [token] = useQueryState("token", parseAsString);
+  const [error] = useQueryState("error", parseAsString);
+
+  const formSchema = z
+    .object({
+      password: z
+        .string()
+        .min(1, t("passwordRequired"))
+        .min(6, t("passwordMin"))
+        .max(100, t("passwordMax")),
+      confirmPassword: z
+        .string()
+        .min(1, t("confirmPasswordRequired"))
+        .min(6, t("passwordMin"))
+        .max(100, t("passwordMax")),
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+      message: t("passwordsDoNotMatch"),
+      path: ["confirmPassword"],
+    });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   async function handleSubmit(values: z.infer<typeof formSchema>) {
-    const { error } = await authClient.signIn.email(
-      {
-        email: values.email,
-        password: values.password,
-      },
-      {
-        async onSuccess(context) {
-          if (context.data.twoFactorRedirect) {
-            router.push("/auth/two-factor");
-            return;
-          }
-          router.push("/dashboard");
-        },
-      },
-    );
+    const { error } = await authClient.resetPassword({
+      newPassword: values.password,
+    });
 
     if (error) {
       form.setError("root", { message: error.message });
+      return;
     }
+
+    router.push("/auth/signin");
+  }
+
+  if (error || !token) {
+    return (
+      <div className={cn("flex flex-col gap-6", className)} {...props}>
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("subtitle")}</CardDescription>
+          </CardHeader>
+
+          <CardContent>
+            <p className="text-sm text-red-500">{error ?? t("missingToken")}</p>
+
+            <FieldDescription className="mt-4 text-center">
+              <Link
+                href="/auth/signin"
+                className="underline underline-offset-4"
+              >
+                {t("backToSignin")}
+              </Link>
+            </FieldDescription>
+          </CardContent>
+        </Card>
+      </div>
+    );
   }
 
   return (
@@ -91,22 +122,22 @@ export function SigninForm({
               <FieldGroup>
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="password"
                   render={({ field }) => (
                     <FormItem>
                       <Field>
                         <FormLabel asChild>
-                          <FieldLabel htmlFor="email">
-                            {t("emailLabel")}
+                          <FieldLabel htmlFor="password">
+                            {t("passwordLabel")}
                           </FieldLabel>
                         </FormLabel>
 
                         <FormControl>
                           <Input
-                            id="email"
-                            type="email"
-                            placeholder={t("emailPlaceholder")}
-                            autoComplete="email"
+                            id="password"
+                            type="password"
+                            autoComplete="new-password"
+                            placeholder={t("passwordPlaceholder")}
                             {...field}
                           />
                         </FormControl>
@@ -119,30 +150,22 @@ export function SigninForm({
 
                 <FormField
                   control={form.control}
-                  name="password"
+                  name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
                       <Field>
-                        <div className="flex items-center">
-                          <FormLabel asChild>
-                            <FieldLabel htmlFor="password">
-                              {t("passwordLabel")}
-                            </FieldLabel>
-                          </FormLabel>
-
-                          <Link
-                            href="/auth/reset-password"
-                            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                          >
-                            {t("forgotPassword")}
-                          </Link>
-                        </div>
+                        <FormLabel asChild>
+                          <FieldLabel htmlFor="confirmPassword">
+                            {t("confirmPasswordLabel")}
+                          </FieldLabel>
+                        </FormLabel>
 
                         <FormControl>
                           <Input
-                            id="password"
+                            id="confirmPassword"
                             type="password"
-                            autoComplete="current-password"
+                            autoComplete="new-password"
+                            placeholder={t("confirmPasswordPlaceholder")}
                             {...field}
                           />
                         </FormControl>
@@ -153,22 +176,24 @@ export function SigninForm({
                   )}
                 />
 
+                {form.formState.errors.root?.message ? (
+                  <p className="text-sm text-red-500">
+                    {form.formState.errors.root.message}
+                  </p>
+                ) : null}
+
                 <Field className="flex flex-col gap-3">
                   <Button type="submit" className="w-full">
                     {t("submit")}
                   </Button>
 
-                  <Button variant="outline" type="button" className="w-full">
-                    {t("github")}
-                  </Button>
-
                   <FieldDescription className="text-center">
-                    {t("noAccount")}{" "}
+                    {t("rememberedPassword")}{" "}
                     <Link
-                      href="/auth/signup"
+                      href="/auth/signin"
                       className="underline underline-offset-4"
                     >
-                      {t("signup")}
+                      {t("signin")}
                     </Link>
                   </FieldDescription>
 

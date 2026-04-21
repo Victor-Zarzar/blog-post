@@ -191,5 +191,24 @@
   "NotFound": {
     "p": "Sorry, we couldn´t find this page.",
     "button": "Back to Homepage"
+  },
+  "ResetPassword": {
+    "title": "Reset password",
+    "subtitle": "Enter your new password to reset your account.",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your new password",
+    "confirmPasswordLabel": "Confirm password",
+    "confirmPasswordPlaceholder": "Confirm your new password",
+    "passwordRequired": "Password is required",
+    "confirmPasswordRequired": "Password confirmation is required",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordMax": "Password must be at most 100 characters",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "missingToken": "No token provided",
+    "submit": "Reset password",
+    "rememberedPassword": "Remembered your password?",
+    "signin": "Sign in",
+    "backToSignin": "Back to sign in",
+    "backToHome": "Back to home"
   }
 }

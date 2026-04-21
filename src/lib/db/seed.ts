@@ -20,5 +20,4 @@ await db
   })
   .where(eq(user.email, env.ADMIN_EMAIL));
 
-console.log("Admin User created successfully:", env.ADMIN_EMAIL);
 process.exit(0);

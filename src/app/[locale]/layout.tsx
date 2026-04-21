@@ -6,6 +6,7 @@ import env from "@/env.mjs";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
 import { getTranslations } from "next-intl/server";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import LayoutProvider from "@/app/widgets/layout-provider/layout-provider";
 
 const geistSans = Geist({
@@ -104,7 +105,9 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <NextIntlClientProvider>
-          <LayoutProvider>{children}</LayoutProvider>
+          <NuqsAdapter>
+            <LayoutProvider>{children}</LayoutProvider>
+          </NuqsAdapter>
         </NextIntlClientProvider>
       </body>
     </html>
