@@ -4,10 +4,9 @@ DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
 COMPOSE = docker compose
 DE = docker exec -it
-DEV = docker compose -f docker-compose.dev.yaml
-PROD = docker compose -f docker-compose.prod.yaml
+DEV = docker compose --env-file .env.dev -f docker-compose.dev.yaml
+PROD = docker compose --env-file .env.prod -f docker-compose.prod.yaml
 EXEC_APP = exec nextjs-app
-PORT = 3000
 DB_PORT = 5432
 DB_CONTAINER_NAME = blog-postgres
 DB_USER = postgres
@@ -27,11 +26,17 @@ dev: install
 prod:
 	bun run build
 
-run:
+run-dev:
 	$(DEV) up --build
 
-run-down:
+down-dev:
 	$(DEV) down
+
+run-prod:
+	$(PROD) up -d --build
+
+down-prod:
+	$(PROD) down
 
 migrate:
 	$(DEV) $(EXEC_APP) bun db:migrate
@@ -42,7 +47,7 @@ studio:
 seed:
 	$(DEV) $(EXEC_APP) bun db:seed
 
-clean: run-down
+clean: down-dev down-prod
 	$(DEV) down -v --remove-orphans --rmi local 2>/dev/null || true
 	$(PROD) down -v --remove-orphans --rmi local 2>/dev/null || true
 	docker system prune -af >/dev/null 2>&1 || true

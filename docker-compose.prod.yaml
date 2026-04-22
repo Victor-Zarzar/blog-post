@@ -1,0 +1,111 @@
+services:
+  nextjs-app:
+    container_name: blog-post-app
+    image: blog-post:prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+      args:
+        DATABASE_URL: ${DATABASE_URL}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DB}
+        BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+        BETTER_AUTH_URL: ${BETTER_AUTH_URL}
+        SMTP_EMAIL: ${SMTP_EMAIL}
+        SMTP_PASSWORD: ${SMTP_PASSWORD}
+        SMTP_HOST: ${SMTP_HOST}
+        SMTP_PORT: ${SMTP_PORT}
+        SMTP_FROM: ${SMTP_FROM}
+        GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+        GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        REDIS_URL: ${REDIS_URL}
+        GOOGLE_RECAPTCHA_SECRET_KEY: ${GOOGLE_RECAPTCHA_SECRET_KEY}
+        NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL}
+        NEXT_PUBLIC_DISABLE_DEVTOOLS: ${NEXT_PUBLIC_DISABLE_DEVTOOLS}
+        NEXT_PUBLIC_SENTRY_DSN: ${NEXT_PUBLIC_SENTRY_DSN}
+        NEXT_PUBLIC_GOOGLE_RECAPTCHA_PUBLIC_KEY: ${NEXT_PUBLIC_GOOGLE_RECAPTCHA_PUBLIC_KEY}
+    env_file:
+      - .env.prod
+    expose:
+      - "3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: always
+    networks:
+      - app-network
+
+  nginx:
+    container_name: blog-nginx
+    image: nginx:1.27-alpine
+    depends_on:
+      - nextjs-app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf.template:/etc/nginx/nginx.conf.template:ro
+      - ./nginx/logs/nginx:/var/log/nginx
+      # - certbot-www:/var/www/certbot
+      # - certbot-conf:/etc/letsencrypt:ro
+    env_file:
+      - .env.prod
+    restart: always
+    command: >
+      /bin/sh -c "envsubst '$${FRONTEND_HOST} $${FRONTEND_PORT} $${DOMAIN}'  < /etc/nginx/nginx.conf.template  > /etc/nginx/nginx.conf  && exec nginx -g 'daemon off;'"
+    networks:
+      - app-network
+
+  #  certbot:
+  #    container_name: blog-certbot
+  #    image: certbot/certbot:latest
+  #    volumes:
+  #      - certbot-www:/var/www/certbot
+  #      - certbot-conf:/etc/letsencrypt
+  #    env_file:
+  #      - .env.prod
+  #    networks:
+  #      - app-network
+
+  postgres:
+    container_name: blog-postgres
+    image: postgres:17.7-alpine
+    restart: always
+    env_file:
+      - .env.prod
+    expose:
+      - "5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d blog_post"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - app-network
+
+  redis:
+    container_name: blog-redis
+    image: redis:8-alpine
+    restart: always
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
+    networks:
+      - app-network
+
+volumes:
+  postgres-data:
+  redis-data:
+  certbot-www:
+  certbot-conf:
+
+networks:
+  app-network:
+    driver: bridge

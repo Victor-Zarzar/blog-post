@@ -33,6 +33,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.dev
 .env.prod
 
 # vercel
@@ -49,3 +50,10 @@ next-env.d.ts
 
 # Redis DB
 dump.rdb
+
+# Nginx configuration
+nginx/crs/
+nginx/logs/
+
+# Certificates
+certbot/

@@ -4,6 +4,11 @@
     "description": "Blog sobre desarrollo de software con artículos, tutoriales e insights sobre programación, tecnologías, herramientas, carrera y tendencias en el mundo dev.",
     "ogDescription": "Artículos y tutoriales sobre desarrollo, programación y tecnología para devs."
   },
+  "Manifest": {
+    "name": "TEN Blog | Comunidade Dev",
+    "shortName": "TEN Blog",
+    "description": "Blog Post | Comunidade Dev"
+  },
   "Navbar": {
     "titlenavbar": "Blog Post",
     "language": "Idioma",

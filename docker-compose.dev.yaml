@@ -4,11 +4,11 @@ services:
     image: blog-post:dev
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     env_file:
-      - .env
+      - .env.dev
     volumes:
       - .:/app
       - /app/node_modules
@@ -26,7 +26,7 @@ services:
     image: postgres:17.7-alpine
     restart: always
     env_file:
-      - .env
+      - .env.dev
     ports:
       - "5432:5432"
     volumes:
