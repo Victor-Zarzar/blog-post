@@ -1,5 +1,4 @@
 # Makefile - Blog Post
-PROJECT_NAME = Blog Post
 DOCKER_IMAGE_NAME = blog-post
 DOCKER_CONTAINER_NAME = blog-post
 COMPOSE = docker compose
@@ -12,6 +11,7 @@ DB_CONTAINER_NAME = blog-postgres
 DB_USER = postgres
 POSTGRES_DB = blog_post
 DB_PASS = postgres
+STUDIO_PORT = 4983
 DOCKER_TAG = $(shell node -p "require('./package.json').version")
 
 gen-secret:
@@ -19,12 +19,6 @@ gen-secret:
 
 install:
 	bun install
-
-dev: install
-	bun run dev
-
-prod:
-	bun run build
 
 run-dev:
 	$(DEV) up --build
@@ -42,7 +36,7 @@ migrate:
 	$(DEV) $(EXEC_APP) bun db:migrate
 
 studio:
-	$(DEV) $(EXEC_APP) bun db:studio
+	$(DEV) $(EXEC_APP) bun db:studio --host 0.0.0.0 --port $(STUDIO_PORT)
 
 seed:
 	$(DEV) $(EXEC_APP) bun db:seed
@@ -64,7 +58,7 @@ access-db-local:
 
 help:
 	@echo ""
-	@echo "$(PROJECT_NAME) v$(DOCKER_TAG)"
+	@echo "$(DOCKER_IMAGE_NAME) v$(DOCKER_TAG)"
 	@echo ""
 	@echo "Local Commands:"
 	@echo "  make install          Install dependencies using bun"

@@ -1,10 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import * as Sentry from "@sentry/nextjs";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
-
 import { cn } from "@/app/shared/lib/utils";
 import { Button } from "@/app/shared/ui/button";
 import {
@@ -88,6 +89,8 @@ export function SignupForm({
     );
     if (error) {
       form.setError("root", { message: error.message });
+      toast.error(error.message);
+      Sentry.captureException(error.message);
     }
   }
 

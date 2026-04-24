@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import DevToolsGuard from "@/app/guard/disable-dev-tools";
+import LayoutAuthWrapper from "@/app/shared/wrapper/layout-auth-wrapper";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -7,7 +8,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <div className="flex min-h-screen items-center justify-center px-4">
         <div className="w-full max-w-full">
           <DevToolsGuard unauthorizedPath="/auth/unauthorized" />
-          {children}
+          <LayoutAuthWrapper>{children}</LayoutAuthWrapper>
         </div>
       </div>
     </div>
