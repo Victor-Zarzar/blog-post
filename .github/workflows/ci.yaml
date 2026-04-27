@@ -30,12 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: "latest"
-
-      - name: Install deps
-        run: bun install --frozen-lockfile
+      - name: Setup project
+        uses: ./.github/actions/setup-project
 
       - name: Typegen
         run: bun run typegen
