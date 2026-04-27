@@ -1,6 +1,6 @@
 # Makefile - Blog Post
 DOCKER_IMAGE_NAME = blog-post
-DOCKER_CONTAINER_NAME = blog-post
+DOCKER_CONTAINER_NAME = blog-post-app
 COMPOSE = docker compose
 DE = docker exec -it
 DEV = docker compose --env-file .env.dev -f docker-compose.dev.yaml
@@ -21,13 +21,13 @@ install:
 	bun install
 
 run-dev:
-	$(DEV) up --build
+	DOCKER_IMAGE_NAME=$(DOCKER_IMAGE_NAME) DOCKER_TAG=$(DOCKER_TAG) $(DEV) up --build
 
 down-dev:
 	$(DEV) down
 
 run-prod:
-	$(PROD) up -d --build
+	DOCKER_IMAGE_NAME=$(DOCKER_IMAGE_NAME) DOCKER_TAG=$(DOCKER_TAG) $(PROD) up -d --build
 
 down-prod:
 	$(PROD) down
@@ -50,8 +50,11 @@ clean: down-dev down-prod
 logs:
 	$(DEV) logs -f
 
-shell:
-	$(DE) $(DOCKER_CONTAINER_NAME) sh
+shell-dev:
+	$(DEV) exec nextjs-app sh
+
+shell-prod:
+	$(PROD) exec nextjs-app sh
 
 access-db-local:
 	$(DE) $(DB_CONTAINER_NAME) psql -U $(DB_USER) -d $(POSTGRES_DB)
