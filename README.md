@@ -55,7 +55,7 @@
 - **Sanitize HTML** - XSS protection for user inputs
 - **Rate Limiter Flexible** - API endpoint rate limiting and DDoS protection
 - **Sentry** - Error tracking and performance monitoring tool
-- **Redis Bun API Native** - In-memory cache layer for session storage and performance optimization
+- **Redis** - In-memory cache layer for session storage and performance optimization
 
 ---
 

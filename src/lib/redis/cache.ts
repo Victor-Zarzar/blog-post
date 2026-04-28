@@ -15,8 +15,9 @@ export async function cacheWithRedis<T>({
 
   const fresh = await fetcher();
 
-  await redis.set(key, JSON.stringify(fresh));
-  await redis.expire(key, ttl);
+  await redis.set(key, JSON.stringify(fresh), {
+    EX: ttl,
+  });
 
   return fresh;
 }
@@ -26,6 +27,7 @@ export async function invalidatePostCache(params?: {
   locales?: string[];
 }) {
   const keys: string[] = [cacheKeys.sitemap()];
+
   const locales = params?.locales ?? ["pt", "en", "es"];
 
   for (const locale of locales) {
@@ -37,6 +39,6 @@ export async function invalidatePostCache(params?: {
   }
 
   if (keys.length) {
-    await redis.del(...keys);
+    await redis.del(keys);
   }
 }

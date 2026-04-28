@@ -27,7 +27,8 @@
     "redis-start": "redis-server",
     "redis:monitor": "redis-cli monitor",
     "update-deps": "bun update",
-    "update-latest": "bun update --latest"
+    "update-latest": "bun update --latest",
+    "clean": "rm -rf node_modules .next playwright-report test-results"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -69,10 +70,10 @@
     "lucide-react": "^1.11.0",
     "motion": "^12.38.0",
     "next": "16.2.4",
-    "next-intl": "^4.9.1",
+    "next-intl": "^4.9.2",
     "next-mdx-remote-client": "^2.1.10",
     "next-themes": "^0.4.6",
-    "nodemailer": "^8.0.6",
+    "nodemailer": "^8.0.7",
     "nuqs": "^2.8.9",
     "pg": "^8.20.0",
     "radix-ui": "^1.4.3",
@@ -83,6 +84,7 @@
     "react-hook-form": "^7.74.0",
     "react-icons": "^5.6.0",
     "react-qr-code": "^2.0.18",
+    "redis": "^5.12.1",
     "sanitize-html": "^2.17.3",
     "server-only": "^0.0.1",
     "sonner": "^2.0.7",
@@ -103,7 +105,7 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "drizzle-kit": "^0.31.10",
     "happy-dom": "^20.9.0",
-    "react-email": "^6.0.0",
+    "react-email": "^6.0.1",
     "tailwindcss": "4.2.4",
     "tw-animate-css": "^1.4.0",
     "typescript": "^6.0.3"
