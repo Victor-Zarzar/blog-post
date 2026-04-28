@@ -45,13 +45,12 @@ export const auth = betterAuth({
   secondaryStorage: {
     get: async (key) => {
       const value = await redis.get(key);
-      return value ? value : null;
+      return value ?? null;
     },
     set: async (key, value, ttl) => {
+      await redis.set(key, value);
       if (ttl) {
-        await redis.set(key, value, { EX: ttl });
-      } else {
-        await redis.set(key, value);
+        await redis.expire(key, ttl);
       }
     },
     delete: async (key) => {

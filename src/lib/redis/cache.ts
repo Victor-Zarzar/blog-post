@@ -15,9 +15,8 @@ export async function cacheWithRedis<T>({
 
   const fresh = await fetcher();
 
-  await redis.set(key, JSON.stringify(fresh), {
-    EX: ttl,
-  });
+  await redis.set(key, JSON.stringify(fresh));
+  await redis.expire(key, ttl);
 
   return fresh;
 }
@@ -39,6 +38,6 @@ export async function invalidatePostCache(params?: {
   }
 
   if (keys.length) {
-    await redis.del(keys);
+    await redis.del(...keys);
   }
 }

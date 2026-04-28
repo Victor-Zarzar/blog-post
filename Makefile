@@ -20,6 +20,12 @@ gen-secret:
 install:
 	bun install
 
+build-dev:
+	DOCKER_IMAGE_NAME=$(DOCKER_IMAGE_NAME) DOCKER_TAG=$(DOCKER_TAG) $(DEV) build
+
+build-prod:
+	DOCKER_IMAGE_NAME=$(DOCKER_IMAGE_NAME) DOCKER_TAG=$(DOCKER_TAG) $(PROD) build --no-cache
+
 run-dev:
 	DOCKER_IMAGE_NAME=$(DOCKER_IMAGE_NAME) DOCKER_TAG=$(DOCKER_TAG) $(DEV) up --build
 
